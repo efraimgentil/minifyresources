@@ -15,12 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = { "/index.jsp" })
 public class IndexServlet extends HttpServlet {
 	
-	
-	@Override
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String requestURL = req.getRequestURL().toString();
+		requestURL= requestURL.replaceAll("index.jsp", "source");
+		if(requestURL.endsWith("/")){
+			requestURL += "source";
+		}
 		URL url = new URL( requestURL.replaceAll("index.jsp", "source") );
 		HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
 		urlCon.setRequestMethod("GET");
@@ -33,6 +37,7 @@ public class IndexServlet extends HttpServlet {
 			response.append("\n");
 		}
 		in.close();
+		urlCon.disconnect();
 		System.out.println( response.toString() );
 		
 		req.setAttribute("sources", response.toString() );
