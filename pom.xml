@@ -118,7 +118,6 @@
 							</execution>
 						</executions>
 						<configuration>
-							<!-- <filesToInclude>target/${project.build.finalName}/WEB-INF/template/_head.jsp</filesToInclude> -->
 							<file>target/${project.build.finalName}/WEB-INF/template/_head.jsp</file>
 							<outputFile>target/${project.build.finalName}/WEB-INF/template/_head.jsp</outputFile>
 							<replacements>
@@ -137,7 +136,5 @@
 				</plugins>
 			</build>
 		</profile>
-
-
 	</profiles>
 </project>
